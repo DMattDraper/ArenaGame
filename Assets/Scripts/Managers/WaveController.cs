@@ -5,10 +5,10 @@ public class WaveController : MonoBehaviour
 
 	//Public Members
 	public int spawnerCount;
-	
+	public bool active = true;
+
 	//Private Members
 	private int depletion = 0;
-	private bool active = true;
 
     // Update is called once per frame
     void Update()

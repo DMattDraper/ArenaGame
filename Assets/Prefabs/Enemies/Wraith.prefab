@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   streakMax: 5
+  streakCount: 0
   missileAttack: {fileID: 3766506136973295431, guid: 21c94b2cc66d2534e85f655cb6b36d93,
     type: 3}
 --- !u!1 &6776534338034088208

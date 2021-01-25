@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -7,6 +8,11 @@ public class LevelManager : MonoBehaviour
     public int index = 0;
     public float waveGap = 2f;//This is an arbitrary delay, will change later
     public WaveController[] waves;
+    public Text waveText;
+
+    void Start(){
+        waveText.text = "Wave 1";
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,5 +31,6 @@ public class LevelManager : MonoBehaviour
     IEnumerator ChangeWave(){
         yield return new WaitForSeconds(waveGap);
         waves[index].gameObject.SetActive(true);
+        waveText.text = "Wave " + (index + 1);
     }
 }

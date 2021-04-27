@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
 	public float maxHealth;
 	public GameObject healthbar;
 	public HealthBar uiHealthBar;
+	public PlayerAnimationController animator;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -93,7 +94,8 @@ public class PlayerHealth : MonoBehaviour
 		//Knock the player backwards & set state to "Stunned"
 		rBody.velocity = knockbackVector.normalized*15;
 		pc.state = PlayerController.State.Stunned;
-		
+		animator.Stun();
+
 		// Start the cool down
 		StartCoroutine("KnockbackCooldown");
 	}
@@ -104,5 +106,6 @@ public class PlayerHealth : MonoBehaviour
 		yield return new WaitForSeconds(0.15f);
 		pc.state = PlayerController.State.Idle;
 		rBody.velocity = new Vector2(0,0);
+		animator.Idle();
 	}
 }

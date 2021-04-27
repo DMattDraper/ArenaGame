@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 	//Public Members
+	public float baseTimeScale = 1.0f;
 	public bool paused = false;
 	public Canvas ui;
 	public GameObject mouseIcon;
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = baseTimeScale;
     }
 
     // Update is called once per frame
@@ -41,13 +42,13 @@ public class GameManager : MonoBehaviour
 		paused = false;
 		ui.gameObject.SetActive(false);
 		mouseIcon.SetActive(true);
-		Time.timeScale = 1;
+		Time.timeScale = baseTimeScale;
 	}
 	
 	// Restart
 	public void Restart(){
 		SceneManager.LoadScene("Level1");
-		Time.timeScale = 1;
+		Time.timeScale = baseTimeScale;
 	}
 	
 	// Quit

@@ -19,11 +19,6 @@ public class Abilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(ability) && isCooldown == false) {
-            isCooldown = true;
-            abilityImage.fillAmount = 1;
-        }
-
         if(isCooldown) {
             abilityImage.fillAmount -= 1 /cooldown * Time.deltaTime;
         }
@@ -32,5 +27,10 @@ public class Abilities : MonoBehaviour
             abilityImage.fillAmount = 0;
             isCooldown = false;
         }
+    }
+
+    public void Activate() {
+        isCooldown = true;
+        abilityImage.fillAmount = 1;
     }
 }

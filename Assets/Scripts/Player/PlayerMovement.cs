@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 	public float speed;
 	public float dashSpeed;
 	public PlayerAnimationController animator;
+	public Abilities abilities;
 	
 	//Private Members
 	private bool dashCharged = true;
@@ -26,12 +27,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate(){
 		
 		// Trigger the Dash
-		if(Input.GetKeyDown(KeyCode.Space) && dashCharged && pc.state != PlayerController.State.Stunned && pc.state != PlayerController.State.Attacking && Time.timeScale != 0){
+		if(CanDash()){
 			Dash();
 		}
 		
 		//Move the Player
-		if(pc.state != PlayerController.State.Stunned && pc.state != PlayerController.State.Dashing){
+		if(CanMove()){
 			Move();
 		}
     }
@@ -74,10 +75,19 @@ public class PlayerMovement : MonoBehaviour
 		dashCharged = false;
 		pc.state = PlayerController.State.Dashing;
 		animator.Dash();
+		abilities.Activate();
 		
 		// Start the cool down
 		StartCoroutine("DashCooldown");
 		StartCoroutine("DashRecharge");
+	}
+
+	public bool CanDash() {
+		return Input.GetKeyDown(KeyCode.Space) && dashCharged && pc.state != PlayerController.State.Stunned && pc.state != PlayerController.State.Attacking && Time.timeScale != 0;
+	}
+
+	public bool CanMove() {
+		return pc.state != PlayerController.State.Stunned && pc.state != PlayerController.State.Dashing;
 	}
 	
 	// Stop dashing after .15 of a second

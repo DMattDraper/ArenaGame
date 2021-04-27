@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	//Public Members
 	public float speed;
 	public float dashSpeed;
+	public PlayerAnimationController animator;
 	
 	//Private Members
 	private bool dashCharged = true;
@@ -48,8 +49,13 @@ public class PlayerMovement : MonoBehaviour
 		
 		// Set state to "Running" if in motion, else "Idle", if not attacking
 		if(pc.state != PlayerController.State.Attacking){
-			if(movement.magnitude != 0){ pc.state = PlayerController.State.Running; } 
-			else { pc.state = PlayerController.State.Idle; }
+			if(movement.magnitude != 0){ 
+				pc.state = PlayerController.State.Running; 
+				animator.Run();
+			} else { 
+				pc.state = PlayerController.State.Idle;
+				animator.Idle();
+			}
 		}
 	}
 	
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
 		// Consume dash charge and set state to "Dashing"
 		dashCharged = false;
 		pc.state = PlayerController.State.Dashing;
+		animator.Dash();
 		
 		// Start the cool down
 		StartCoroutine("DashCooldown");
@@ -79,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 		yield return new WaitForSeconds(.15f);
 		pc.state = PlayerController.State.Idle;
 		rBody.velocity = new Vector2(0,0);
+		animator.Idle();
 	}
 	
 	// Recharge the dash after one second

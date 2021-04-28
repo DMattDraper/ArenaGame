@@ -2537,8 +2537,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1627713440}
   - {fileID: 325240207}
+  - {fileID: 1627713440}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2573,6 +2573,7 @@ MonoBehaviour:
     type: 3}
   farSuper: {fileID: 9085325693060192565, guid: df77f5a39f5b43c48bdb07d96de2720f,
     type: 3}
+  animator: {fileID: 510403705}
 --- !u!114 &510403704
 MonoBehaviour:
   m_ObjectHideFlags: 0

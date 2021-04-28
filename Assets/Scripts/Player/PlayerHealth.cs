@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
 	public float health;
 	public float maxHealth;
 	public GameObject healthbar;
+	public HealthBar uiHealthBar;
+	public PlayerAnimationController animator;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -20,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
 		
 		// Fill Health	
 		health = maxHealth;
+		uiHealthBar.SetMaxHealth(maxHealth);
 		// Get Components
 		rBody = GetComponent<Rigidbody2D>();
         pc = GetComponent<PlayerController>();
@@ -78,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
 	void UpdateHealthBar(){
 		
 		healthbar.transform.localScale = new Vector3(1.0f * (health/maxHealth), 0.15f, 2.0f);
-		
+		uiHealthBar.SetHealth(health);
 	}
 	
 	// Knock the player back
@@ -91,7 +94,8 @@ public class PlayerHealth : MonoBehaviour
 		//Knock the player backwards & set state to "Stunned"
 		rBody.velocity = knockbackVector.normalized*15;
 		pc.state = PlayerController.State.Stunned;
-		
+		animator.Stun();
+
 		// Start the cool down
 		StartCoroutine("KnockbackCooldown");
 	}
@@ -102,5 +106,6 @@ public class PlayerHealth : MonoBehaviour
 		yield return new WaitForSeconds(0.15f);
 		pc.state = PlayerController.State.Idle;
 		rBody.velocity = new Vector2(0,0);
+		animator.Idle();
 	}
 }

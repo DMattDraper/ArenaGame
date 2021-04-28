@@ -9,6 +9,7 @@ public class MouseController : MonoBehaviour
 	public GameObject closeIcon;
 	public GameObject midIcon;
 	public GameObject farIcon;
+	public Attack attackIcon;
 	public float midDistance;
 	public float farDistance;
 	
@@ -40,14 +41,17 @@ public class MouseController : MonoBehaviour
 			farIcon.SetActive(true);
 			midIcon.SetActive(false);
 			closeIcon.SetActive(false);
+			attackIcon.activateBomb();
 		} else if (magnitude >= midDistance) {
 			farIcon.SetActive(false);
 			midIcon.SetActive(true);
 			closeIcon.SetActive(false);
+			attackIcon.activateBow();
 		} else {
 			farIcon.SetActive(false);
 			midIcon.SetActive(false);
 			closeIcon.SetActive(true);
+			attackIcon.activateBlade();
 		}
 		
 	}

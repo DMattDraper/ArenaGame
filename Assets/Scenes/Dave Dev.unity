@@ -2182,8 +2182,8 @@ GameObject:
   - component: {fileID: 510403697}
   - component: {fileID: 510403703}
   - component: {fileID: 510403701}
-  - component: {fileID: 510403704}
   - component: {fileID: 510403705}
+  - component: {fileID: 510403704}
   - component: {fileID: 510403707}
   - component: {fileID: 510403706}
   m_Layer: 0
@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 510403696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10dd5e815e833fc40a65591c2d5ca81b, type: 3}
+  m_Script: {fileID: 11500000, guid: fddf44633d2833845a9cda046c7c985f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 510403707}

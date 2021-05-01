@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
 	public float maxHealth;
 	public GameObject healthbar;
 	public HealthBar uiHealthBar;
-	public PlayerAnimationController animator;
+	public PlayerAnimation animator;
 	
 	//Private Members
 	private Rigidbody2D rBody;

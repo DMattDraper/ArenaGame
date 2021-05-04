@@ -27,14 +27,6 @@ public class PlayerAnimation : MonoBehaviour
         
     }
 
-    public void PassiveUpdate() {
-        if (playerController.state == PlayerController.State.Idle){
-            Idle();
-        } else if (playerController.state == PlayerController.State.Running) {
-            Run();
-        }
-    }
-
     public void Idle() {
         animator.Play("Player_Idle_" + direction);
     }

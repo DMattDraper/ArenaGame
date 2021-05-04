@@ -8,6 +8,7 @@ public class SkeletonHealth : MonoBehaviour
 	public float maxHealth;
 	public float health;
 	public GameObject healthbar;
+	public SkeletonAnimation animator;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -51,7 +52,9 @@ public class SkeletonHealth : MonoBehaviour
 			
 		//Knock the player backwards
 		rBody.velocity = knockbackVector.normalized*15;
-		sc.state = SkeletonController.State.Stunned;		
+		sc.state = SkeletonController.State.Stunned;
+		animator.Stun();
+
 		StartCoroutine("KnockbackCooldown");
 	}
 	
@@ -81,5 +84,6 @@ public class SkeletonHealth : MonoBehaviour
 		yield return new WaitForSeconds(0.25f);
 		sc.state = SkeletonController.State.Walking;
 		rBody.velocity = new Vector2(0,0);
+		animator.Walk();
 	}
 }

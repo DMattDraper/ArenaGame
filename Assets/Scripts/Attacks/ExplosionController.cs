@@ -8,9 +8,15 @@ public class ExplosionController : MonoBehaviour
 	public float lifeTime;
 	public float power;
 	
+	//Private Members
+	private CameraShake cameraShake;
+	
     // Start is called before the first frame update
     void Start()
     {
+
+		cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+		StartCoroutine(cameraShake.Shake(power/400,lifeTime));
         // Destroy after lifetime expires
 		Destroy(gameObject,lifeTime);
     }

@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
 	public GameObject healthbar;
 	public HealthBar uiHealthBar;
 	public PlayerAnimation animator;
+	public CameraShake cameraShake;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -56,6 +57,10 @@ public class PlayerHealth : MonoBehaviour
 			TakeDamage(5);
 		// Collided with a wall while stunned or dashing (Cancel Knockback/Dash)
 		} else if (other.gameObject.tag == "Wall" && (pc.state == PlayerController.State.Stunned || pc.state == PlayerController.State.Dashing)){
+			if (pc.state == PlayerController.State.Dashing){
+				StartCoroutine(cameraShake.Shake(.15f,.4f));
+			}
+			
 			rBody.velocity = new Vector2(0,0);
 			pc.state = PlayerController.State.Idle;
 		}

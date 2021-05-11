@@ -762,7 +762,7 @@ PrefabInstance:
     - target: {fileID: 6974414121483955678, guid: ba9779ef908a4ee41ab010811918562c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6974414121483955678, guid: ba9779ef908a4ee41ab010811918562c,
         type: 3}
@@ -3365,7 +3365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseTimeScale: 1
-  paused: 0
+  paused: 1
   ui: {fileID: 621846482}
   mouseIcon: {fileID: 1583868430}
 --- !u!1001 &760044803
@@ -6535,7 +6535,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1672334870
 PrefabInstance:

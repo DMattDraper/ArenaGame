@@ -2,26 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonAnimation : MonoBehaviour
+public class ImpAnimator : MonoBehaviour
 {
     // Public Members
     public Animator animator;
-    public SkeletonController skeletonController;
+    public ImpController impController;
+    public ImpMovement impMovement;
 
     // Private Members
-    private RectTransform playerTransform;
+    private Vector2 destination;
     private enum Direction { Down, Right, Up, Left}
     private Direction direction = Direction.Down;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if (player != null) {
-            playerTransform = player.GetComponent<RectTransform>();
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,24 +29,25 @@ public class SkeletonAnimation : MonoBehaviour
     }
 
     public void Idle() {
-        animator.Play("Skeleton_Idle_" + direction);
+        animator.Play("Imp_Idle_" + direction);
     }
 
     public void Walk() {
-        animator.Play("Skeleton_Walk_" + direction);
+        animator.Play("Imp_Walk_" + direction);
     }
 
-    public void Attack() {
-        animator.Play("Skeleton_Attack_" + direction);
+    public void Drop() {
+        animator.Play("Imp_Drop_" + direction);
     }
 
     public void Stun() {
-        animator.Play("Skeleton_Stun_" + direction);
+        animator.Play("Imp_Stun_" + direction);
     }
 
      // Get angle between the player and the skeleton
-	float getAngle(){		
-		float angle = Mathf.Atan2(playerTransform.position.y-transform.position.y, playerTransform.position.x-transform.position.x)* Mathf.Rad2Deg;
+	float getAngle(){
+        destination = impMovement.GetDestination();		
+		float angle = Mathf.Atan2(destination.y-transform.position.y, destination.x-transform.position.x)* Mathf.Rad2Deg;
 		
 		return angle;
 	}

@@ -8,6 +8,7 @@ public class SkullordAttack : MonoBehaviour
 	public float meleeRange;
 	public GameObject meleeAttack;
 	public GameObject missileAttack;
+	public SkullordAnimation animator;
 	
 	//Private Members
 	private bool loaded = true;
@@ -36,17 +37,24 @@ public class SkullordAttack : MonoBehaviour
         
 		if(sc.state == SkullordController.State.Attacking && loaded){
 			if (distance > meleeRange){
-				MissileAttack();
+				MissileWindup();
 			} else {
-				Windup();
+				MeleeWindup();
 			}
 		} 
     }
 	
 	//Windup
-	void Windup(){
+	void MeleeWindup(){
 		
-		StartCoroutine("WindupTimer");
+		StartCoroutine("MeleeWindupTimer");
+		//Disable attacking until reloaded
+		loaded = false;
+	}
+
+	void MissileWindup(){
+		
+		StartCoroutine("MissileWindupTimer");
 		//Disable attacking until reloaded
 		loaded = false;
 	}
@@ -64,7 +72,7 @@ public class SkullordAttack : MonoBehaviour
 		Quaternion attackRotation = new Quaternion(0,0,0,0);
 		//Create the attack object
 		GameObject attackInstance = Instantiate(meleeAttack,attackPosition,attackRotation);
-		
+
 		//Begin reloading
 		StartCoroutine("MeleeRecharge");
 		
@@ -90,14 +98,7 @@ public class SkullordAttack : MonoBehaviour
 		//Begin reloading
 		loaded = false;
 		StartCoroutine("MissileRecharge");
-		
-	}
-	
-	// Recharge the missile attack after three and a half seconds
-	IEnumerator MissileRecharge(){
-		yield return new WaitForSeconds(3.5f);
-		loaded = true;
-		sc.state = SkullordController.State.Walking;
+		animator.Attack();
 	}
 	
 	// Recharge the melee attack after two seconds
@@ -106,10 +107,31 @@ public class SkullordAttack : MonoBehaviour
 		loaded = true;
 		sc.state = SkullordController.State.Walking;
 	}
+
+	// Recharge the missile attack after three and a half seconds
+	IEnumerator MissileRecharge(){
+		yield return new WaitForSeconds(3.5f);
+		loaded = true;
+		sc.state = SkullordController.State.Walking;
+	}
 	
 	// Windup the attack
-	IEnumerator WindupTimer(){
-		yield return new WaitForSeconds(0.5f);
+	IEnumerator MeleeWindupTimer(){
+		animator.Idle();
+		yield return new WaitForSeconds(0.25f);
+		animator.Attack();
+		yield return new WaitForSeconds(0.25f);
 		MeleeAttack();
+		animator.Idle();
+	}
+
+	// Windup the attack
+	IEnumerator MissileWindupTimer(){
+		animator.Idle();
+		yield return new WaitForSeconds(0.25f);
+		animator.Attack();
+		yield return new WaitForSeconds(0.25f);
+		MissileAttack();
+		animator.Idle();
 	}
 }

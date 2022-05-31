@@ -10,7 +10,6 @@ public class SpectreMovement : MonoBehaviour
 	public float rushRange;
 	public float followRange;
 	public float attackRange;
-	public GameObject rushSprite;
 	
 	//Private Members
 	private Vector2 path;
@@ -69,7 +68,6 @@ public class SpectreMovement : MonoBehaviour
 	
 	// Pause before rushing
 	IEnumerator ActivateRush(){
-		rushSprite.SetActive(true);
 		yield return new WaitForSeconds(1.5f);
 		endPath = path;
 	}

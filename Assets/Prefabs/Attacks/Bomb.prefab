@@ -86,7 +86,9 @@ MonoBehaviour:
   lifeTime: 10
   power: 5
   speed: 10
+  rotationSpeed: 15
   isExplosive: 1
+  rotates: 1
   explosion: {fileID: 7221700063924357864, guid: 6f0e26bc27554a748a049b6d7923f0c6,
     type: 3}
 --- !u!212 &1715204797459440333

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
 {
+	public static int count = 0;
+
 	//Public Members
 	public float lifeTime;
 	public float power;
@@ -15,6 +17,11 @@ public class PlayerAttackController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		count++;
+		if (count % 2 == 0) {
+			transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y * -1);
+		}
+
 		//Get Rigidbodies
 		rBody = GetComponent<Rigidbody2D>();
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();

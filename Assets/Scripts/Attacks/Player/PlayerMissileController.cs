@@ -8,7 +8,9 @@ public class PlayerMissileController : MonoBehaviour
 	public float lifeTime;
 	public float power;
 	public float speed;
+	public float rotationSpeed = 5.0f;
 	public bool isExplosive;
+	public bool rotates;
 	public GameObject explosion;
 	
 	//Private Members
@@ -37,6 +39,9 @@ public class PlayerMissileController : MonoBehaviour
     void FixedUpdate()
     {
         rBody.velocity = direction * speed;
+		if (rotates) {
+			transform.Rotate(0.0f, 0.0f, rotationSpeed, Space.World);
+		}
     }
 	
 	// Occurs upon entering a trigger collision

@@ -7,6 +7,7 @@ public class SkullordHealth : MonoBehaviour
     //Public Members
 	public float maxHealth;
 	public GameObject healthbar;
+	public SkullordAnimation animator;
 	
 	//Private Members
 	private float health;
@@ -51,6 +52,8 @@ public class SkullordHealth : MonoBehaviour
 		//Knock the player backwards
 		rBody.velocity = knockbackVector.normalized*15;
 		sc.state = SkullordController.State.Stunned;
+		animator.Stun();
+		
 		StartCoroutine("KnockbackCooldown");
 	}
 	
@@ -78,5 +81,6 @@ public class SkullordHealth : MonoBehaviour
 		yield return new WaitForSeconds(0.25f);
 		sc.state = SkullordController.State.Walking;
 		rBody.velocity = new Vector2(0,0);
+		animator.Walk();
 	}
 }

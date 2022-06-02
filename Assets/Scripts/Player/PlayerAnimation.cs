@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+public class PlayerAnimation : MonoBehaviour
 {
     // Public Members
     public Animator animator;
@@ -25,14 +25,6 @@ public class PlayerAnimationController : MonoBehaviour
             direction = Direction.Down;
         }
         
-    }
-
-    public void PassiveUpdate() {
-        if (playerController.state == PlayerController.State.Idle){
-            Idle();
-        } else if (playerController.state == PlayerController.State.Running) {
-            Run();
-        }
     }
 
     public void Idle() {

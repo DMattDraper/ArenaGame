@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
 	public GameObject closeSuper;
 	public GameObject midSuper;
 	public GameObject farSuper;
-	public PlayerAnimationController animator;
+	public PlayerAnimation animator;
 	
 	//Private Members
 	private float recharge;

@@ -8,6 +8,7 @@ public class ImpHealth : MonoBehaviour
 	public float maxHealth;
 	public float health;
 	public GameObject healthbar;
+	public ImpAnimator animator;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -57,6 +58,8 @@ public class ImpHealth : MonoBehaviour
 		//Knock the Imp backwards
 		rBody.velocity = knockbackVector.normalized*15;
 		ic.state = ImpController.State.Stunned;
+		animator.Stun();
+
 		StartCoroutine("KnockbackCooldown");
 	}
 	
@@ -90,5 +93,6 @@ public class ImpHealth : MonoBehaviour
 		
 		// Set state back to walking
 		ic.state = ImpController.State.Walking;
+		animator.Walk();
 	}
 }

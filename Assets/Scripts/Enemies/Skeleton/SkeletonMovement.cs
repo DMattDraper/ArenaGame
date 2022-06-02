@@ -8,7 +8,8 @@ public class SkeletonMovement : MonoBehaviour
 	public float speed;
 	public float followRange;
 	public float attackRange;
-	
+	public SkeletonAnimation animator;
+
 	//Private Members
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
@@ -22,6 +23,7 @@ public class SkeletonMovement : MonoBehaviour
         rBody = GetComponent<Rigidbody2D>();
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 		sc = GetComponent<SkeletonController>();
+		animator.Walk();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class SkeletonMovement : MonoBehaviour
 		//Change State
 		if (distance >= followRange && sc.state == SkeletonController.State.Walking){
 			Walk(path);
+			animator.Walk();
 		} else if (distance < attackRange) {
 			sc.state = SkeletonController.State.Attacking;
 		}

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	//Public Members
 	public float speed;
 	public float dashSpeed;
-	public PlayerAnimationController animator;
+	public PlayerAnimation animator;
 	public Abilities abilities;
 	
 	//Private Members

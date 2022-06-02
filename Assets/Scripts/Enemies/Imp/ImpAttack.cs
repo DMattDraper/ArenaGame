@@ -6,6 +6,7 @@ public class ImpAttack : MonoBehaviour
 {
 	//Public Members
 	public GameObject caltrop;
+	public ImpAnimator animator;
 	
 	//Private Members
 	private bool loaded = true;
@@ -36,6 +37,7 @@ public class ImpAttack : MonoBehaviour
 		
 		// Drop Caltrop
 		Instantiate(caltrop, transform.position, transform.rotation);
+		animator.Drop();
 		
 		// Prevent Multidrops and wait
 		loaded = false;
@@ -45,7 +47,9 @@ public class ImpAttack : MonoBehaviour
 	// Wait before moving to new postion
 	IEnumerator Wait(){
 		
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(0.4f);
+		animator.Idle();
+		yield return new WaitForSeconds(1.6f);
 		
 		// Set Destination & Start Walking
 		im.SetDestination();

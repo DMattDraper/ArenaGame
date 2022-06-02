@@ -6,6 +6,7 @@ public class ImpMovement : MonoBehaviour
 {
 	//Public Members
 	public float speed;
+	public ImpAnimator animator;
 	
 	//Private Members
 	private bool stuck;
@@ -22,6 +23,7 @@ public class ImpMovement : MonoBehaviour
 		ic = GetComponent<ImpController>();
 		//Set Destination
 		SetDestination();
+		animator.Walk();
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class ImpMovement : MonoBehaviour
 		// Other wise, just keep on walking
 		} else if (ic.state == ImpController.State.Walking){
 			rBody.velocity = (destination - rBody.position).normalized * speed;
+			animator.Walk();
 		} else if (ic.state == ImpController.State.Dropping) {
 			rBody.velocity = new Vector2(0,0);
 		}
@@ -49,6 +52,10 @@ public class ImpMovement : MonoBehaviour
 		StartCoroutine("StuckTimer");
 	}
 	
+	public Vector2 GetDestination(){
+		return destination;
+	}
+
 	// Is the Imp within range of its destination?
 	bool InRange(){
 		

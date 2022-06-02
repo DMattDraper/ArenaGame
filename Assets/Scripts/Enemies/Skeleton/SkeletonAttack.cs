@@ -7,6 +7,7 @@ public class SkeletonAttack : MonoBehaviour
 	//Public Members
 	public GameObject attack;
 	public bool loaded = true;
+	public SkeletonAnimation animator;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -60,8 +61,12 @@ public class SkeletonAttack : MonoBehaviour
 	// Windup the attack
 	IEnumerator WindupTimer(){
 		
-		yield return new WaitForSeconds(0.5f);
+		animator.Idle();
+		yield return new WaitForSeconds(0.25f);
+		animator.Attack();
+		yield return new WaitForSeconds(0.25f);
 		Attack();
+		animator.Walk();
 	}
 	
 	// Recharge the attack after a second

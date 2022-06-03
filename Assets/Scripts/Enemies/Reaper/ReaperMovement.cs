@@ -10,6 +10,7 @@ public class ReaperMovement : MonoBehaviour
 	public float BoomRange;
 	public float SlashRange;
 	public float ChargeRange;
+	public float chargeSpeed;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -35,13 +36,16 @@ public class ReaperMovement : MonoBehaviour
 		float distance = path.magnitude;
 		
 		//Change State
-		if (distance >= followRange && rc.state == ReaperController.State.Walking){
+		if (rc.spinning){
+			SpinWalk(path);
+		}
+		else if (distance >= followRange && rc.state == ReaperController.State.Walking){
 			if (charging) {Charge(path);}
-			else {Walk(path);}
-			
-		}else if (distance < BoomRange && distance > ChargeRange && rc.state == ReaperController.State.Walking) {
-			rc.Attack_Decide = Random.value < 0.01;
-			if (rc.Attack_Decide){
+			else {Walk(path);}	
+		}
+		else if (distance <= BoomRange && distance > ChargeRange && rc.state == ReaperController.State.Walking) {
+			rc.ranged_attack = Random.value < 0.01;
+			if (rc.ranged_attack){
 				rc.state = ReaperController.State.Attacking;
 				charging = false;
 			}
@@ -49,15 +53,29 @@ public class ReaperMovement : MonoBehaviour
 				if (charging) {Charge(path);}
 				else {Walk(path);}
 			}
-			
-		}else if (distance < ChargeRange  && distance > SlashRange && rc.state == ReaperController.State.Walking) {
+		}
+		else if (distance <= ChargeRange  && distance > SlashRange && rc.state == ReaperController.State.Walking) {
 			charging = true;
 			Charge(path);
-			
-		}else if (distance < SlashRange && rc.state == ReaperController.State.Walking) {
-			rc.state = ReaperController.State.Attacking;
-			charging = false;
 		}
+		else if (distance <= SlashRange && rc.state == ReaperController.State.Walking) {
+			bool spin = Random.value > 0.7;
+			if (spin){
+				rc.state = ReaperController.State.Attacking;
+				rc.spinning = true;
+			}
+			else{
+				rc.state = ReaperController.State.Attacking;
+				charging = false;
+			}
+		}
+		/*else{
+			if(rc.state != ReaperController.State.Walking){
+				Vector2 stop = new Vector2(0.0f, 0.0f);
+				Walk(stop);
+			}
+		}
+		*/
     }
 	
 	// Walk Towards the player
@@ -65,10 +83,14 @@ public class ReaperMovement : MonoBehaviour
 		rBody.velocity = path.normalized * speed;
 	}
 	
+	void SpinWalk(Vector2 path){
+		rBody.velocity = path.normalized * speed * (chargeSpeed/2);
+	}
+	
 	// Charge Towards the player
 	void Charge(Vector2 path){
 		StartCoroutine("ChargeTimer");
-		rBody.velocity = path.normalized * (speed * 3);
+		rBody.velocity = path.normalized * (speed * chargeSpeed);
 	}
 
 	IEnumerator ChargeTimer(){

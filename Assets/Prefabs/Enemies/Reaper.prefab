@@ -182,6 +182,8 @@ MonoBehaviour:
     type: 3}
   BoomAttack: {fileID: 6168720177082906114, guid: 8fb25a441b6fa414994f2e8f8fcc9856,
     type: 3}
+  SpinAttack: {fileID: 7309622716630373452, guid: 3726b2e8af86ee14e853da1878373cfe,
+    type: 3}
   loaded: 1
 --- !u!114 &2549769634279242922
 MonoBehaviour:
@@ -196,7 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  Attack_Decide: 0
+  ranged_attack: 0
+  spinning: 0
 --- !u!114 &-623153655731476667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +232,7 @@ MonoBehaviour:
   BoomRange: 9
   SlashRange: 2
   ChargeRange: 5
+  chargeSpeed: 3.75
 --- !u!1001 &3816865684242410944
 PrefabInstance:
   m_ObjectHideFlags: 0

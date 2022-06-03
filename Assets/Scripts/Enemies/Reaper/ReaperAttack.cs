@@ -7,6 +7,7 @@ public class ReaperAttack : MonoBehaviour
 	//Public Members
 	public GameObject SlashAttack;
 	public GameObject BoomAttack;
+	public GameObject SpinAttack;
 	public bool loaded = true;
 	
 	//Private Members
@@ -30,31 +31,84 @@ public class ReaperAttack : MonoBehaviour
     {
         if(rc.state == ReaperController.State.Attacking && loaded){
 			Windup();
-		} 
+		}
     }
 	
 	// Windup
 	void Windup(){
 		
-		if (rc.Attack_Decide){
+		if(rc.spinning){
+			//StartCoroutine("WindupTimerSpin");
+			//Disable attacking until reloaded
+			loaded = false;
+			//Do not stop moving to start spinning
+			spinAttack();
+		}
+		else if (rc.ranged_attack){
 			StartCoroutine("WindupTimerRanged");
 			//Disable attacking until reloaded
 			loaded = false;
+			//Stop moving to make attack
 			rBody.velocity = new Vector2(0,0);
 		}
 		else {
 			StartCoroutine("WindupTimerMelee");
 			//Disable attacking until reloaded
 			loaded = false;
+			//Stop moving to make attack
 			rBody.velocity = new Vector2(0,0);
 		}
 	}
 	
-	// Attack
-	void Attack(bool ranged){
+	// Windup the Melee attack
+	IEnumerator WindupTimerMelee(){
+		yield return new WaitForSeconds(0.15f);
+		scytheAttack();
+	}
+	
+	// Windup the Ranged attack
+	IEnumerator WindupTimerRanged(){
+		yield return new WaitForSeconds(0.25f);
+		boomerangAttack();
+	}
+	
+	// Recharge the melee attack after a second
+	IEnumerator AttackRechargeMelee(){
+		rc.state = ReaperController.State.Walking;
+		yield return new WaitForSeconds(1.0f);
+		loaded = true;
+	}
+	
+	// Recharge the ranged attack after 3 seconds
+	IEnumerator AttackRechargeRanged(){
+		rc.state = ReaperController.State.Walking;
+		rc.ranged_attack = false;
+		yield return new WaitForSeconds(3.0f);
+		loaded = true;
+	}
 		
-		if (ranged) {	//Ranged Attack
+	IEnumerator AttackRechargeSpin(){
+		yield return new WaitForSeconds(3.0f);
+		rc.state = ReaperController.State.Walking;
+		rc.spinning = false;
+		loaded = true;
+	}
+	
+	void scytheAttack(){
+			//Get Vector2 for the attack
+			Vector2 attackTransform =  playerRigidbody.position - rBody.position;
+		
+			//Get position for attack
+			Vector2 attackPosition = rBody.position + attackTransform.normalized * 1.5f;
 			
+			//Create the attack object
+			GameObject attackInstance = Instantiate(SlashAttack,attackPosition,new Quaternion(0,0,0,0));
+			
+			//Begin reloading
+			StartCoroutine("AttackRechargeMelee");
+	}
+	
+	void boomerangAttack(){
 			//Get Vector2 for the attack
 			Vector2 attackTransform =  playerRigidbody.position - rBody.position;
 		
@@ -68,9 +122,9 @@ public class ReaperAttack : MonoBehaviour
 			
 			//Begin reloading
 			StartCoroutine("AttackRechargeRanged");
-			
-		} else {	//Melee Attack
-			
+	}
+	
+	void spinAttack(){
 			//Get Vector2 for the attack
 			Vector2 attackTransform =  playerRigidbody.position - rBody.position;
 		
@@ -78,42 +132,10 @@ public class ReaperAttack : MonoBehaviour
 			Vector2 attackPosition = rBody.position + attackTransform.normalized * 1.5f;
 			
 			//Create the attack object
-			GameObject attackInstance = Instantiate(SlashAttack,attackPosition,new Quaternion(0,0,0,0));
+			GameObject attackInstance = Instantiate(SpinAttack,attackPosition,new Quaternion(0,0,0,0));
+			attackInstance.GetComponent<SpinScytheController>().target = rBody;
 			
 			//Begin reloading
-			StartCoroutine("AttackRechargeMelee");
-		}
-	}
-	
-	// Windup the Melee attack
-	IEnumerator WindupTimerMelee(){
-		
-		yield return new WaitForSeconds(0.25f);
-		Attack(false);
-	}
-	
-	// Windup the Ranged attack
-	IEnumerator WindupTimerRanged(){
-		
-		yield return new WaitForSeconds(0.25f);
-		Attack(true);
-	}
-	
-	// Recharge the melee attack after a second
-	IEnumerator AttackRechargeMelee(){
-		
-		yield return new WaitForSeconds(1.0f);
-		loaded = true;
-		rc.state = ReaperController.State.Walking;
-	}
-	
-	// Recharge the ranged attack after 3 seconds
-	IEnumerator AttackRechargeRanged(){
-		
-		rc.state = ReaperController.State.Walking;
-		rc.Attack_Decide = false;
-		yield return new WaitForSeconds(3.0f);
-		loaded = true;
-
+			StartCoroutine("AttackRechargeSpin");
 	}
 }

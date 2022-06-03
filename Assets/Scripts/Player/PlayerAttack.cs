@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
 	public GameObject closeSuper;
 	public GameObject midSuper;
 	public GameObject farSuper;
+	public PlayerAnimationController animator;
 	
 	//Private Members
 	private float recharge;
@@ -89,7 +90,8 @@ public class PlayerAttack : MonoBehaviour
 		//Disable attacking until reloaded & set state to attacking
 		loaded = false;
 		pc.state = PlayerController.State.Attacking;
-		
+		animator.Attack();
+
 		// Start the cooldown
 		StartCoroutine("AttackCooldown");
 		StartCoroutine("AttackRecharge");
@@ -98,8 +100,9 @@ public class PlayerAttack : MonoBehaviour
 	// Recharge the attack after a tenth of a second
 	IEnumerator AttackCooldown(){
 		
-		yield return new WaitForSeconds(0.10f);
+		yield return new WaitForSeconds(0.20f);
 		pc.state = PlayerController.State.Idle;
+		animator.Idle();
 	}
 	
 	// Recharge the attack after a quarter second

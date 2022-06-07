@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerPowerup : MonoBehaviour
 {
 	// Public Members
+	public string collectSound;
+	public string endSound;
 	public enum Powerup {None, Damage, Invincible}
 	public Powerup powerup = Powerup.None;
 	
@@ -25,6 +27,7 @@ public class PlayerPowerup : MonoBehaviour
 	// Collide with powerup
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag  == "Powerup"){
+			AudioManager.Instance.Play(collectSound);
 			// Apply Powerup
 			PowerupController pc = other.gameObject.GetComponent<PowerupController>();
 			powerup = (Powerup) pc.powerup;
@@ -38,6 +41,7 @@ public class PlayerPowerup : MonoBehaviour
 	IEnumerator Cooldown(){
 		
 		yield return new WaitForSeconds(10.0f);
+		AudioManager.Instance.Play(endSound);
 		powerup = Powerup.None;
 	}
 }

@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	//Public Members
 	public float speed;
 	public float dashSpeed;
+	public string dashSound;
 	public PlayerAnimation animator;
 	public Abilities abilities;
 	
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	// Dash the player towards the mouse
 	void Dash(){
-		
+		AudioManager.Instance.Play(dashSound);
 		// Get Mouse Position and Convert to World Position
 		Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 		Vector2 mousePosition = Camera.main.ScreenToWorldPoint(screenPosition);

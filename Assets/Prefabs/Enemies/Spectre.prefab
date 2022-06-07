@@ -196,6 +196,7 @@ MonoBehaviour:
   rushRange: 10
   followRange: 6
   attackRange: 2
+  rushSound: Rush
 --- !u!114 &3503419406128990341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   maxHealth: 30
   health: 30
   power: 25
+  hitSound: WallSlam
   healthbar: {fileID: 3503419406568787744}
 --- !u!212 &8710489481945678154
 SpriteRenderer:

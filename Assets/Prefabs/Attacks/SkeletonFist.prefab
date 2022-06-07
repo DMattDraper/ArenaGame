@@ -128,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.1
   power: 10
+  sound: Punch
+  hitSound: HitPlayer
 --- !u!50 &6748420632726744259
 Rigidbody2D:
   serializedVersion: 4

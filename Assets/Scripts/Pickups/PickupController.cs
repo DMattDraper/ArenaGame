@@ -6,6 +6,7 @@ public class PickupController : MonoBehaviour
 {
 	//Public Members
 	public float power;
+	public string sound;
 	
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PickupController : MonoBehaviour
 	
 	private void OnTriggerEnter2D(Collider2D other){
 		if(other.gameObject.tag == "Player"){
+			AudioManager.Instance.Play(sound);
 			PlayerHealth ph = other.gameObject.GetComponent<PlayerHealth>();
 				
 			if (ph.health < ph.maxHealth){

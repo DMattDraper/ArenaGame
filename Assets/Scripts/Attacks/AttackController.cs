@@ -7,10 +7,16 @@ public class AttackController : MonoBehaviour
 	//Public Members
 	public float lifeTime;
 	public float power;
+	public string sound;
+	public string hitSound;
 	
 	//Private Members
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
+
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
 	
     // Start is called before the first frame update
     void Start()
@@ -38,6 +44,7 @@ public class AttackController : MonoBehaviour
 			PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
 			
 			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
+				AudioManager.Instance.Play(hitSound);
 				Hit(other.gameObject);
 			}
 		}

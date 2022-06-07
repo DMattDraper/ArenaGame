@@ -8,6 +8,7 @@ public class SpectreHealth : MonoBehaviour
 	public float maxHealth;
 	public float health;
 	public float power;
+	public string hitSound;
 	public GameObject healthbar;
 	
 	//Private Members
@@ -35,9 +36,11 @@ public class SpectreHealth : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other){
 		
 		if (sc.state == SpectreController.State.Rushing && other.gameObject.tag == "Player"){
+			AudioManager.Instance.Play(hitSound);
 			Hit(other.gameObject);
 			Destroy(gameObject);
 		} else if (sc.state == SpectreController.State.Rushing && other.gameObject.tag == "Wall"){
+			AudioManager.Instance.Play(hitSound);
 			Destroy(gameObject);
 		} else if (other.gameObject.tag == "Player"){
 			rBody.velocity = new Vector2(0,0);

@@ -45,6 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnemy: 5
   reloadTime: 5
+  startDelay: 0
+  startSound: SpawnStart
+  finishSound: SpawnFinish
   enemy: {fileID: 6910645806107393322, guid: 1c85d471c8b34cb4aab438c82a203a5f, type: 3}
   spawnDisplay: {fileID: 1720592469455039769, guid: 44ddf59131205db4da3413967e618ff3,
     type: 3}
+  enemyList: []

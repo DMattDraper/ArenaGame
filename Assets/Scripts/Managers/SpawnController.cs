@@ -8,6 +8,8 @@ public class SpawnController : MonoBehaviour
 	public float maxEnemy;
 	public float reloadTime;
 	public float startDelay;
+	public string startSound;
+	public string finishSound;
 	public GameObject enemy;
 	public GameObject spawnDisplay;
 	public List<GameObject> enemyList;
@@ -55,6 +57,7 @@ public class SpawnController : MonoBehaviour
 	
 	// Spawn the Enemy
 	void Spawn(){
+		AudioManager.Instance.Play(finishSound);
 		enemyList.Add(Instantiate(enemy, transform.position, transform.rotation));
 		enemyCount++;
 		loaded = false;
@@ -72,6 +75,7 @@ public class SpawnController : MonoBehaviour
 	IEnumerator AnimateSpawn(){
 		yield return new WaitForSeconds(reloadTime - 0.5f);
 		spawnDisplay.SetActive(true);
+		AudioManager.Instance.Play(startSound);
 		yield return new WaitForSeconds(0.5f);
 		spawnDisplay.SetActive(false);
 	}
@@ -86,6 +90,7 @@ public class SpawnController : MonoBehaviour
 	IEnumerator StartAnimateSpawn(){
 		yield return new WaitForSeconds(startDelay - 0.5f);
 		spawnDisplay.SetActive(true);
+		AudioManager.Instance.Play(startSound);
 		yield return new WaitForSeconds(0.5f);
 		spawnDisplay.SetActive(false);
 	}

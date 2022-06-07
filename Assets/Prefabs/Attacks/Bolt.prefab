@@ -96,7 +96,11 @@ MonoBehaviour:
   lifeTime: 10
   power: 10
   speed: 20
+  rotationSpeed: 5
   isExplosive: 0
+  rotates: 0
+  sound: Arrow
+  hitSound: HitEnemy
   explosion: {fileID: 0}
 --- !u!212 &78112243581016595
 SpriteRenderer:

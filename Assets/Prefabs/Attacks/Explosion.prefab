@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.3
   power: 30
+  sound: Explosion
 --- !u!212 &4555596568528329046
 SpriteRenderer:
   m_ObjectHideFlags: 0

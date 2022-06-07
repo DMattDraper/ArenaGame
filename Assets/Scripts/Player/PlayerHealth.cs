@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 	//Public Members
 	public float health;
 	public float maxHealth;
+	public string wallHitSound;
 	public GameObject healthbar;
 	public HealthBar uiHealthBar;
 	public PlayerAnimation animator;
@@ -58,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
 		// Collided with a wall while stunned or dashing (Cancel Knockback/Dash)
 		} else if (other.gameObject.tag == "Wall" && (pc.state == PlayerController.State.Stunned || pc.state == PlayerController.State.Dashing)){
 			if (pc.state == PlayerController.State.Dashing){
+				AudioManager.Instance.Play(wallHitSound);
 				StartCoroutine(cameraShake.Shake(.15f,.4f));
 			}
 			

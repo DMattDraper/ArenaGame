@@ -89,6 +89,8 @@ MonoBehaviour:
   rotationSpeed: 15
   isExplosive: 1
   rotates: 1
+  sound: Bomb
+  hitSound: HitEnemy
   explosion: {fileID: 4853803235681768834, guid: de6df3161249c4144b31cc8e9577b83e,
     type: 3}
 --- !u!212 &1180312699136996069

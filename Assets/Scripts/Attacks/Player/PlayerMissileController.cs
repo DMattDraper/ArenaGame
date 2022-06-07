@@ -11,12 +11,18 @@ public class PlayerMissileController : MonoBehaviour
 	public float rotationSpeed = 5.0f;
 	public bool isExplosive;
 	public bool rotates;
+	public string sound;
+	public string hitSound;
 	public GameObject explosion;
 	
 	//Private Members
 	private Vector2 direction;
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
+
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
 	
     // Start is called before the first frame update
     void Start()
@@ -47,7 +53,7 @@ public class PlayerMissileController : MonoBehaviour
 	// Occurs upon entering a trigger collision
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.gameObject.tag == "Enemy"){
-			
+			AudioManager.Instance.Play(hitSound);
 			Hit(other.gameObject);
 			if(isExplosive){
 				Instantiate(explosion, transform.position, transform.rotation);

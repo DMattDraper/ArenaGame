@@ -81,6 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.1
   power: 30
+  sound: Slash
+  hitSound: HitEnemy
+  shatterSound: Shatter
 --- !u!50 &8980926415905865187
 Rigidbody2D:
   serializedVersion: 4

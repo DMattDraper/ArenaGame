@@ -175,3 +175,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.5
   power: 60
+  sound: Explosion

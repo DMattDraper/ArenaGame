@@ -9,10 +9,17 @@ public class PlayerAttackController : MonoBehaviour
 	//Public Members
 	public float lifeTime;
 	public float power;
+	public string sound;
+	public string hitSound;
+	public string shatterSound;
 	
 	//Private Members
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
+
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
 	
     // Start is called before the first frame update
     void Start()
@@ -42,8 +49,10 @@ public class PlayerAttackController : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other){
 		
 		if (other.gameObject.tag == "Enemy"){
+			AudioManager.Instance.Play(hitSound);
 			Hit(other.gameObject);
 		} else if (other.gameObject.tag == "Caltrop"){
+			AudioManager.Instance.Play(shatterSound);
 			Destroy(other.gameObject);
 		}
 	}

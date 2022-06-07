@@ -10,6 +10,7 @@ public class SpectreMovement : MonoBehaviour
 	public float rushRange;
 	public float followRange;
 	public float attackRange;
+	public string rushSound;
 	
 	//Private Members
 	private Vector2 path;
@@ -69,6 +70,7 @@ public class SpectreMovement : MonoBehaviour
 	// Pause before rushing
 	IEnumerator ActivateRush(){
 		yield return new WaitForSeconds(1.5f);
+		AudioManager.Instance.Play(rushSound);
 		endPath = path;
 	}
 }

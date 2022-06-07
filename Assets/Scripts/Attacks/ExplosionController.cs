@@ -7,9 +7,14 @@ public class ExplosionController : MonoBehaviour
 	//Public Members
 	public float lifeTime;
 	public float power;
+	public string sound;
 	
 	//Private Members
 	private CameraShake cameraShake;
+
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
 	
     // Start is called before the first frame update
     void Start()

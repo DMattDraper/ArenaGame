@@ -9,10 +9,16 @@ public class MissileController : MonoBehaviour
 	public float power;
 	public float speed;
 	public bool isExplosive;
+	public string sound;
+	public string hitSound;
 	
 	//Private Members
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
+
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
 	
     // Start is called before the first frame update
     void Start()
@@ -46,6 +52,7 @@ public class MissileController : MonoBehaviour
 			PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
 			
 			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
+				AudioManager.Instance.Play(hitSound);
 				Hit(other.gameObject);
 			}
 			

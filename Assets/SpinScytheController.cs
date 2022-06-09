@@ -10,6 +10,7 @@ public class SpinScytheController : MonoBehaviour
 	public float rotationSpeed = 1;
 	public float circleRadius = 1;
 	public Rigidbody2D target;
+	public Collider2D parentCollider;
 	
 	//Private Members
 	private Rigidbody2D playerRigidbody;
@@ -21,29 +22,30 @@ public class SpinScytheController : MonoBehaviour
     {
 		//Get Rigidbodies
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-		transform.localScale = transform.localScale * 4.0f;
+		transform.localScale = transform.localScale * 2.0f;
 		
 		//Start Decay Timer
 		Destroy(gameObject,lifeTime);
     }
  
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
-		
-		positionOffset.Set(Mathf.Cos(angle) * circleRadius, Mathf.Sin(angle) * circleRadius);
-		transform.position = target.position + positionOffset;
-		angle += Time.deltaTime * rotationSpeed;
-	 
+		//positionOffset.Set(Mathf.Cos(angle) * circleRadius, Mathf.Sin(angle) * circleRadius);
+		transform.position = target.position; //+ positionOffset;
+		//angle += Time.deltaTime * rotationSpeed;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.tag == "Player"){
-			PlayerController pc = other.gameObject.GetComponent<PlayerController>();
-			PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
+		if(other != parentCollider){
+			Debug.Log("Hitting non-parent");
+			if (other.gameObject.tag == "Player"){
+				PlayerController pc = other.gameObject.GetComponent<PlayerController>();
+				PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
 			
-			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
-				Hit(other.gameObject);
+				if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
+					Hit(other.gameObject);
+				}
 			}
 		}
 	}

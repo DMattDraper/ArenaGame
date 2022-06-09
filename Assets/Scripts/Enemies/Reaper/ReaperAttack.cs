@@ -149,6 +149,7 @@ public class ReaperAttack : MonoBehaviour
 			//Create the attack object
 			GameObject attackInstance = Instantiate(SpinAttack,attackPosition,new Quaternion(0,0,0,0));
 			attackInstance.GetComponent<SpinScytheController>().target = rBody;
+			attackInstance.GetComponent<SpinScytheController>().parentCollider = reaperCollider;
 			
 			//Begin reloading
 			StartCoroutine("AttackRechargeSpin");

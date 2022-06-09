@@ -169,7 +169,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7309622716630373452}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -205,3 +205,4 @@ MonoBehaviour:
   rotationSpeed: 50
   circleRadius: 2
   target: {fileID: 6266079862440093714, guid: e7a145bfffc76e24eabb8baa99e4cac0, type: 3}
+  parentCollider: {fileID: 0}

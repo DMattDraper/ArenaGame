@@ -31,7 +31,7 @@ public class ReaperHealth : MonoBehaviour
     }
 	
 	private void OnTriggerEnter2D(Collider2D other){
-		
+		Debug.Log("Hitting reaper");
 	}
 	
 	private void OnCollision2D(Collision2D other){

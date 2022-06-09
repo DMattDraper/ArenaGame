@@ -64,7 +64,7 @@ public class ReaperMovement : MonoBehaviour
 		}
 		else if (distance <= SlashRange && rc.state == ReaperController.State.Walking) {
 			bool spin = false;
-			if((rh.health/rh.maxHealth) <= 0.5f){
+			if((rh.health/rh.maxHealth) <= 1.0f){
 				spin = Random.value > 0.7f;
 			}
 			

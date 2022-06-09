@@ -22,7 +22,7 @@ public class SpinScytheController : MonoBehaviour
     {
 		//Get Rigidbodies
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-		transform.localScale = transform.localScale * 2.0f;
+		transform.localScale = transform.localScale * 2.5f;
 		
 		//Start Decay Timer
 		Destroy(gameObject,lifeTime);

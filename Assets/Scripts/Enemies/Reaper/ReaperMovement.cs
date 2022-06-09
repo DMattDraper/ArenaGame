@@ -16,6 +16,8 @@ public class ReaperMovement : MonoBehaviour
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
 	private ReaperController rc;
+	private ReaperHealth rh;
+	private ReaperAttack ra;
 	private bool charging;
 	
     // Start is called before the first frame update
@@ -25,6 +27,8 @@ public class ReaperMovement : MonoBehaviour
         rBody = GetComponent<Rigidbody2D>();
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 		rc = GetComponent<ReaperController>();
+		rh = GetComponent<ReaperHealth>();
+		ra = GetComponent<ReaperAttack>();
 		charging = false;
     }
 
@@ -44,8 +48,8 @@ public class ReaperMovement : MonoBehaviour
 			else {Walk(path);}	
 		}
 		else if (distance <= BoomRange && distance > ChargeRange && rc.state == ReaperController.State.Walking) {
-			rc.ranged_attack = Random.value < 0.01;
-			if (rc.ranged_attack){
+			rc.ranged_attack = Random.value < 0.01f;
+			if (rc.ranged_attack && ra.loaded){
 				rc.state = ReaperController.State.Attacking;
 				charging = false;
 			}
@@ -59,14 +63,22 @@ public class ReaperMovement : MonoBehaviour
 			Charge(path);
 		}
 		else if (distance <= SlashRange && rc.state == ReaperController.State.Walking) {
-			bool spin = Random.value > 0.7;
-			if (spin){
+			bool spin = false;
+			if((rh.health/rh.maxHealth) <= 0.5f){
+				spin = Random.value > 0.7f;
+			}
+			
+			if (spin && ra.loaded){
 				rc.state = ReaperController.State.Attacking;
 				rc.spinning = true;
 			}
-			else{
+			else if (ra.loaded){
 				rc.state = ReaperController.State.Attacking;
 				charging = false;
+			}
+			else{
+				if (charging) {Charge(path);}
+				else {Walk(path);}
 			}
 		}
 		else{

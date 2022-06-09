@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
 		}
     }
 	
+	// Start
+	public void StartGame() {
+		SceneManager.LoadScene("Dave Dev");
+	}
+
 	// Pause
 	public void Pause(){
 		paused = true;
@@ -38,7 +43,7 @@ public class GameManager : MonoBehaviour
 	}
 	
 	// Resume
-	public void Resume(){
+	public void Resume() {
 		paused = false;
 		ui.gameObject.SetActive(false);
 		mouseIcon.SetActive(true);
@@ -46,13 +51,18 @@ public class GameManager : MonoBehaviour
 	}
 	
 	// Restart
-	public void Restart(){
+	public void Restart() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		Time.timeScale = baseTimeScale;
 	}
 	
+	// Quit to Menu
+	public void QuitToMenu() {
+		SceneManager.LoadScene("Main Menu");
+	}
+
 	// Quit
-	public void Quit(){
+	public void Quit() {
 		Application.Quit();
 	}
 }

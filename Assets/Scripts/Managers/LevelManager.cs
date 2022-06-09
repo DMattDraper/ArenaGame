@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public Text waveText;
 
     void Start(){
-        waveText.text = "Wave 1";
+        waveText.text = "WAVE 1";
     }
 
     // Update is called once per frame
@@ -31,6 +31,6 @@ public class LevelManager : MonoBehaviour
     IEnumerator ChangeWave(){
         yield return new WaitForSeconds(waveGap);
         waves[index].gameObject.SetActive(true);
-        waveText.text = "Wave " + (index + 1);
+        waveText.text = "WAVE " + (index + 1);
     }
 }

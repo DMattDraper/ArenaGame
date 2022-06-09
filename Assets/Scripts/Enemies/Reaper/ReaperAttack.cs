@@ -38,7 +38,6 @@ public class ReaperAttack : MonoBehaviour
 	void Windup(){
 		
 		if(rc.spinning){
-			//StartCoroutine("WindupTimerSpin");
 			//Disable attacking until reloaded
 			loaded = false;
 			//Do not stop moving to start spinning
@@ -63,7 +62,7 @@ public class ReaperAttack : MonoBehaviour
 	// Windup the Melee attack
 	IEnumerator WindupTimerMelee(){
 		yield return new WaitForSeconds(0.15f);
-		scytheAttack();
+		meleeAttack();
 	}
 	
 	// Windup the Ranged attack
@@ -72,10 +71,10 @@ public class ReaperAttack : MonoBehaviour
 		boomerangAttack();
 	}
 	
-	// Recharge the melee attack after a second
+	// Recharge the melee attack after a second (plus the 1.5 seconds of attacking)
 	IEnumerator AttackRechargeMelee(){
+		yield return new WaitForSeconds(2.0f);
 		rc.state = ReaperController.State.Walking;
-		yield return new WaitForSeconds(1.0f);
 		loaded = true;
 	}
 	
@@ -86,12 +85,26 @@ public class ReaperAttack : MonoBehaviour
 		yield return new WaitForSeconds(3.0f);
 		loaded = true;
 	}
-		
+	
+	// Keep spinning for 3 seconds then reload to attack again
 	IEnumerator AttackRechargeSpin(){
 		yield return new WaitForSeconds(3.0f);
 		rc.state = ReaperController.State.Walking;
 		rc.spinning = false;
 		loaded = true;
+	}
+	
+	// Create three scythe attacks after 0.0 seconds, 0.5, and 1.0 seconds
+	IEnumerator meleeAttackThree(int n){
+		yield return new WaitForSeconds(0.5f * n);
+		scytheAttack();
+	}
+	
+	void meleeAttack(){
+		for(int i = 0; i < 3; i++){
+			StartCoroutine(meleeAttackThree(i));
+		}
+		StartCoroutine("AttackRechargeMelee");
 	}
 	
 	void scytheAttack(){
@@ -104,8 +117,10 @@ public class ReaperAttack : MonoBehaviour
 			//Create the attack object
 			GameObject attackInstance = Instantiate(SlashAttack,attackPosition,new Quaternion(0,0,0,0));
 			
+			/*
 			//Begin reloading
 			StartCoroutine("AttackRechargeMelee");
+			*/
 	}
 	
 	void boomerangAttack(){

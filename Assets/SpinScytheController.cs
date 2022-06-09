@@ -12,7 +12,6 @@ public class SpinScytheController : MonoBehaviour
 	public Rigidbody2D target;
 	
 	//Private Members
-	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
 	private Vector2 positionOffset;
 	private float angle;
@@ -21,11 +20,8 @@ public class SpinScytheController : MonoBehaviour
     void Start()
     {
 		//Get Rigidbodies
-		rBody = GetComponent<Rigidbody2D>();
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-		
-		//Set Rotation
-		//gameObject.transform.Rotate(0.0f, 0.0f, getAngle(), Space.World);
+		transform.localScale = transform.localScale * 4.0f;
 		
 		//Start Decay Timer
 		Destroy(gameObject,lifeTime);

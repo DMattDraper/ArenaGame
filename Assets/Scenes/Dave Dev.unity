@@ -822,6 +822,16 @@ MonoBehaviour:
     volume: 0.6
     pitch: 1
     source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: 4e1ff8faed12a475eba9be0e46072269, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+  - name: Bounce
+    clip: {fileID: 8300000, guid: 7e9ee6dc04a5d40d1a5dfc4beb9865e7, type: 3}
+    volume: 0.7
+    pitch: 0.5
+    source: {fileID: 0}
 --- !u!4 &167704221
 Transform:
   m_ObjectHideFlags: 0

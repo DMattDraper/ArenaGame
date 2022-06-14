@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 	// Die
 	public void Die() {
 		AudioManager.Instance.Play("Death");
+		MusicManager.Instance.Die();
 		dead = true;
 		deathMenu.gameObject.SetActive(true);
 		mouseIcon.SetActive(false);

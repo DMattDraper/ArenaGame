@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 10
+  playerSound: Shatter
+  enemySound: HitEnemy
 --- !u!50 &-838215885141573804
 Rigidbody2D:
   serializedVersion: 4

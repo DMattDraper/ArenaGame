@@ -80,8 +80,13 @@ public class PlayerHealth : MonoBehaviour
 	void TakeDamage(float damage){
 		
 		health -= damage;
-		if (health <= 0) Application.Quit();
+		if (health <= 0) Die();
 		UpdateHealthBar();
+	}
+
+	void Die() {
+		GameManager.Instance.Die();
+		// gameObject.SetActive(false);
 	}
 	
 	// Update the health bar when damage is taken

@@ -31,9 +31,7 @@ public class SpinScytheController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		//positionOffset.Set(Mathf.Cos(angle) * circleRadius, Mathf.Sin(angle) * circleRadius);
-		transform.position = target.position; //+ positionOffset;
-		//angle += Time.deltaTime * rotationSpeed;
+		transform.position = target.position;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){

@@ -116,11 +116,6 @@ public class ReaperAttack : MonoBehaviour
 			
 			//Create the attack object
 			GameObject attackInstance = Instantiate(SlashAttack,attackPosition,new Quaternion(0,0,0,0));
-			
-			/*
-			//Begin reloading
-			StartCoroutine("AttackRechargeMelee");
-			*/
 	}
 	
 	void boomerangAttack(){

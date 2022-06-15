@@ -40,21 +40,9 @@ public class ReaperHealth : MonoBehaviour
 		}
 	}
 	
-	/*
-	Consider not knocking back the Reaper as it is a miniboss?
-	*/
-	
+	// Do not knock reaper back
 	void Knockback(Collider2D other){
-		
-		/*
-		//KnockBack the Reaper when attacked
-		Rigidbody2D attackRigidBody = other.GetComponent<Rigidbody2D>();
-		Vector2 knockbackVector = rbody.position - attackRigidBody.position;
-		
-		rbody.velocity = knockbackVector.normalized * 15;
-		rc.state = ReaperController.State.Stunned;
-		StartCoroutine("KnockBackCooldown");
-		*/
+
 	}
 	
 	IEnumerator KnockBackCooldown(){

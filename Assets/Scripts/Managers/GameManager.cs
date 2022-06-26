@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
 	public bool dead = false;
 	public Canvas pauseMenu;
 	public Canvas deathMenu;
+	public Canvas victoryDisplay;
 	public GameObject mouseIcon;
+	public GameObject victoryTeleporter;
 
 	void Awake() {
 		if (Instance != null && Instance != this) { 
@@ -86,5 +88,16 @@ public class GameManager : MonoBehaviour
 		deathMenu.gameObject.SetActive(true);
 		mouseIcon.SetActive(false);
 		Time.timeScale = 0;
+	}
+
+	// Victory
+	public void Victory() {
+		victoryDisplay.gameObject.SetActive(true);
+		victoryTeleporter.SetActive(true);
+	}
+
+	// End Level
+	public void EndLevel() {
+		SceneManager.LoadScene("Win Menu");
 	}
 }

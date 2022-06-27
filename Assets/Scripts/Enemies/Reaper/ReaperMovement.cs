@@ -69,13 +69,13 @@ public class ReaperMovement : MonoBehaviour
 				charging = false;
 			}
 		}
-		/*else{
+		else{
 			if(rc.state != ReaperController.State.Walking){
 				Vector2 stop = new Vector2(0.0f, 0.0f);
 				Walk(stop);
 			}
 		}
-		*/
+		
     }
 	
 	// Walk Towards the player

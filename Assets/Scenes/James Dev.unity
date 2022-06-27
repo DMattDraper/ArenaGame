@@ -2036,6 +2036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   dashSpeed: 50
+  animator: {fileID: 0}
+  abilities: {fileID: 0}
 --- !u!50 &510403698
 Rigidbody2D:
   serializedVersion: 4
@@ -2111,6 +2113,8 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   healthbar: {fileID: 1627713438}
+  uiHealthBar: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!224 &510403702
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2159,6 +2163,7 @@ MonoBehaviour:
     type: 3}
   farSuper: {fileID: 9085325693060192565, guid: df77f5a39f5b43c48bdb07d96de2720f,
     type: 3}
+  animator: {fileID: 0}
 --- !u!114 &510403704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2963,6 +2968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec278be6d066a76429432b657654b243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseTimeScale: 1
   paused: 0
   ui: {fileID: 621846482}
   mouseIcon: {fileID: 1583868430}
@@ -5152,6 +5158,7 @@ MonoBehaviour:
   closeIcon: {fileID: 1625956918}
   midIcon: {fileID: 1394080810}
   farIcon: {fileID: 869348703}
+  attackIcon: {fileID: 0}
   midDistance: 5
   farDistance: 15
 --- !u!1 &1590687835
@@ -5536,7 +5543,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 8617151778418052909, guid: e7a145bfffc76e24eabb8baa99e4cac0,
+      objectReference: {fileID: 1497785750962107314, guid: f583ab666aa6135498315c5258edd95e,
         type: 3}
     - target: {fileID: 9031754784032374979, guid: ff13643cdbcedac46b968c494d6cbc14,
         type: 3}
@@ -5665,6 +5672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerCount: 5
+  active: 1
 --- !u!1 &1763939535
 GameObject:
   m_ObjectHideFlags: 0

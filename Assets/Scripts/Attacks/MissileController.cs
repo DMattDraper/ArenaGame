@@ -49,7 +49,8 @@ public class MissileController : MonoBehaviour
 			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
 				Hit(other.gameObject);
 				if(isExplosive){
-					Instantiate(explosion, transform.position, transform.rotation);
+					GameObject explo = Instantiate(explosion, transform.position, transform.rotation);
+					explo.transform.localScale = explo.transform.localScale * 2;
 				}
 			}
 			
@@ -57,7 +58,8 @@ public class MissileController : MonoBehaviour
 		}
 		else if(other.gameObject.tag == "Wall"){
 			if(isExplosive){
-				Instantiate(explosion, transform.position, transform.rotation);
+				GameObject explo = Instantiate(explosion, transform.position, transform.rotation);
+				explo.transform.localScale = explo.transform.localScale * 2;
 			}
 			Destroy(gameObject);
 		}

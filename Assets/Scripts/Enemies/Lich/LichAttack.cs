@@ -77,12 +77,12 @@ public class LichAttack : MonoBehaviour
 	
 	// Windup the Ranged attack
 	IEnumerator WindupTimerNuke(){
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(1.0f);
 		NukeAttack();
 	}
 	
 	IEnumerator WindupTimerRapid() {
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
 		int count = 10;
 		while(count != 0){
 			RapidFireAttack();
@@ -94,7 +94,7 @@ public class LichAttack : MonoBehaviour
 	
 	// Recharge the melee attack after a second
 	IEnumerator WindupSummon(){
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(1.5f);
 		SummonAttack();
 	}
 	

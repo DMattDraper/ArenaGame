@@ -23,12 +23,6 @@ public class LichHealth : MonoBehaviour
 		lc = GetComponent<LichController>();
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 	
 	private void OnTriggerEnter2D(Collider2D other){
 		
@@ -41,16 +35,13 @@ public class LichHealth : MonoBehaviour
 	}
 	
 	void Knockback(Collider2D other){
-		
-		/*
-		//KnockBack the Reaper when attacked
+		//KnockBack the Lich when attacked or collision with hazard
 		Rigidbody2D attackRigidBody = other.GetComponent<Rigidbody2D>();
 		Vector2 knockbackVector = rbody.position - attackRigidBody.position;
 		
 		rbody.velocity = knockbackVector.normalized * 15;
-		rc.state = ReaperController.State.Stunned;
+		lc.state = LichController.State.Stunned;
 		StartCoroutine("KnockBackCooldown");
-		*/
 	}
 	
 	IEnumerator KnockBackCooldown(){

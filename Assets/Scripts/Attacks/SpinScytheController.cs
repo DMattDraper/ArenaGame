@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpinScytheController : MonoBehaviour
+{
+	//Public Members
+	public float lifeTime;
+	public float power;
+	public float rotationSpeed = 1;
+	public float circleRadius = 1;
+	public Rigidbody2D target;
+	
+	//Private Members
+	private Rigidbody2D rBody;
+	private Rigidbody2D playerRigidbody;
+	private Vector2 positionOffset;
+	private float angle;
+	
+    // Start is called before the first frame update
+    void Start()
+    {
+		//Get Rigidbodies
+		rBody = GetComponent<Rigidbody2D>();
+		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+		
+		//Set Rotation
+		//gameObject.transform.Rotate(0.0f, 0.0f, getAngle(), Space.World);
+		
+		//Start Decay Timer
+		Destroy(gameObject,lifeTime);
+    }
+ 
+	// Update is called once per frame
+	void Update()
+	{
+		
+		positionOffset.Set(Mathf.Cos(angle) * circleRadius, Mathf.Sin(angle) * circleRadius);
+		transform.position = target.position + positionOffset;
+		angle += Time.deltaTime * rotationSpeed;
+	 
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.tag == "Player"){
+			PlayerController pc = other.gameObject.GetComponent<PlayerController>();
+			PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
+			
+			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
+				Hit(other.gameObject);
+			}
+		}
+	}
+
+	public void Hit(GameObject other){
+		other.SendMessage("TakeDamage",power);
+		other.SendMessage("Knockback",gameObject.GetComponent<Collider2D>());
+	}
+}

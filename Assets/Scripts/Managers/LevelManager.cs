@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         if (!waves[index].active && index==(waves.Length-1)){
-            Debug.Log("Level Complete!");
+            GameManager.Instance.Victory();
             gameObject.SetActive(false);
         } else if (!waves[index].active){
             waves[index].gameObject.SetActive(false);

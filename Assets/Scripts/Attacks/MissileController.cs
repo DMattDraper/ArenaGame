@@ -9,6 +9,7 @@ public class MissileController : MonoBehaviour
 	public float power;
 	public float speed;
 	public bool isExplosive;
+	public GameObject explosion;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -47,8 +48,17 @@ public class MissileController : MonoBehaviour
 			
 			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
 				Hit(other.gameObject);
+				if(isExplosive){
+					Instantiate(explosion, transform.position, transform.rotation);
+				}
 			}
 			
+			Destroy(gameObject);
+		}
+		else if(other.gameObject.tag == "Wall"){
+			if(isExplosive){
+				Instantiate(explosion, transform.position, transform.rotation);
+			}
 			Destroy(gameObject);
 		}
 	}

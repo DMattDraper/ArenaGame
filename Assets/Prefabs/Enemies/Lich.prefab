@@ -150,7 +150,7 @@ MonoBehaviour:
     type: 3}
   RapidAttack: {fileID: 3766506136973295431, guid: 21c94b2cc66d2534e85f655cb6b36d93,
     type: 3}
-  NukeRangedAttack: {fileID: 7423422507150859575, guid: 9d295ce5ec8f28e4b839c99f352a4664,
+  NukeRangedAttack: {fileID: 2720182515559382819, guid: f66dfb55d1a9ddd479ae3817ee7c18c2,
     type: 3}
   Skeleton: {fileID: 6910645806107393322, guid: 1c85d471c8b34cb4aab438c82a203a5f,
     type: 3}

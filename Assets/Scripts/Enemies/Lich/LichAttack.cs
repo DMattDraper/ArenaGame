@@ -83,7 +83,13 @@ public class LichAttack : MonoBehaviour
 	
 	IEnumerator WindupTimerRapid() {
 		yield return new WaitForSeconds(0.5f);
-		RapidFireAttack();
+		int count = 10;
+		while(count != 0){
+			RapidFireAttack();
+			count--;
+			yield return new WaitForSeconds(0.1f);
+		}
+		StartCoroutine("AttackRechargeRapid");
 	}
 	
 	// Recharge the melee attack after a second
@@ -147,9 +153,6 @@ public class LichAttack : MonoBehaviour
 			
 			//Create the attack object
 			GameObject attackInstance = Instantiate(RapidAttack, attackPosition, new Quaternion(0,0,0,0));
-			
-			//Begin reloading
-			StartCoroutine("AttackRechargeRapid");
 	}
 	
 	void NukeAttack(){

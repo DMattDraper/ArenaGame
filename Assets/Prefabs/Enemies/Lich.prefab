@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   followRange: 15
-  shootRange: 7
+  shootRange: 4
   slashRange: 2
 --- !u!114 &7056818721833628396
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d81567eb22bf34fba793e527bbba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeAttack: {fileID: 7479362195386244883, guid: 285c62bdc94c36240a57326733d783ed,
+  MeleeAttack: {fileID: 5087910792231166917, guid: b36f088d96ef8f9449a6187d3cd764af,
     type: 3}
   RapidAttack: {fileID: 3766506136973295431, guid: 21c94b2cc66d2534e85f655cb6b36d93,
     type: 3}
@@ -426,6 +426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3352678458229102862, guid: 8c5727b67484c084ca94ef9b031a3943,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.46666667
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c5727b67484c084ca94ef9b031a3943, type: 3}

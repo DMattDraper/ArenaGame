@@ -71,13 +71,13 @@ public class LichAttack : MonoBehaviour
 	
 	// Windup the Melee attack
 	IEnumerator WindupTimerSlash(){
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.3f);
 		SlashAttack();
 	}
 	
 	// Windup the Ranged attack
 	IEnumerator WindupTimerNuke(){
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(0.5f);
 		NukeAttack();
 	}
 	
@@ -94,7 +94,7 @@ public class LichAttack : MonoBehaviour
 	
 	// Recharge the melee attack after a second
 	IEnumerator WindupSummon(){
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0.75f);
 		SummonAttack();
 	}
 	
@@ -102,21 +102,21 @@ public class LichAttack : MonoBehaviour
 	
 	IEnumerator AttackRechargeSlash(){
 		lc.state = LichController.State.Walking;
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(0.5f);
 		loaded = true;
 	}
 	
 	IEnumerator AttackRechargeRapid(){
 		lc.state = LichController.State.Walking;
 		lc.rapidFire = false;
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(0.75f);
 		loaded = true;
 	}
 	
 	// Recharge the ranged attack after 3 seconds
 	IEnumerator AttackRechargeNuke(){
 		lc.state = LichController.State.Walking;
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(0.75f);
 		loaded = true;
 		yield return new WaitForSeconds(5.0f);
 		lc.nuke = true;
@@ -139,6 +139,7 @@ public class LichAttack : MonoBehaviour
 			
 			//Create the attack object
 			GameObject attackInstance = Instantiate(MeleeAttack, attackPosition, new Quaternion(0,0,0,0));
+			attackInstance.transform.localScale = attackInstance.transform.localScale * 2;
 			
 			//Begin reloading
 			StartCoroutine("AttackRechargeSlash");

@@ -9,7 +9,8 @@ public class AttackController : MonoBehaviour
 	public float power;
 	public string sound;
 	public string hitSound;
-	
+	public Transform parent;
+
 	//Private Members
 	private Rigidbody2D rBody;
 	private Rigidbody2D playerRigidbody;
@@ -26,7 +27,9 @@ public class AttackController : MonoBehaviour
 		playerRigidbody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 		
 		//Set Rotation
-		//gameObject.transform.Rotate(0.0f, 0.0f, getAngle(), Space.World);
+		if (parent != null) {
+			gameObject.transform.Rotate(0.0f, 0.0f, GetAngle(), Space.World);
+		}
 		
 		//Start Decay Timer
 		Destroy(gameObject,lifeTime);
@@ -59,13 +62,9 @@ public class AttackController : MonoBehaviour
 		other.SendMessage("Knockback",gameObject.GetComponent<Collider2D>());
 	}
 	
-	// Get angle between the player and the mouse
-	float getAngle(){		
-		//Get Mouse Position
-        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-		Vector2 mousePosition = Camera.main.ScreenToWorldPoint(screenPosition);
-		
-		float angle = Mathf.Atan2(mousePosition.y-playerRigidbody.position.y, mousePosition.x-playerRigidbody.position.x)* Mathf.Rad2Deg;
+	// Get angle between the player and the missile
+	float GetAngle(){		
+		float angle = Mathf.Atan2(rBody.position.y-parent.position.y, rBody.position.x-parent.position.x)* Mathf.Rad2Deg;
 		
 		return angle;
 	}

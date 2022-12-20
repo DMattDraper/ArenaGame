@@ -9,6 +9,8 @@ public class SpinScytheController : MonoBehaviour
 	public float power;
 	public float rotationSpeed = 1;
 	public float circleRadius = 1;
+	public string sound;
+	public string hitSound;
 	public Rigidbody2D target;
 	public Collider2D parentCollider;
 	
@@ -17,6 +19,10 @@ public class SpinScytheController : MonoBehaviour
 	private Vector2 positionOffset;
 	private float angle;
 	
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +37,8 @@ public class SpinScytheController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+		transform.Rotate(0.0f, 0.0f, rotationSpeed, Space.World);
+
 		transform.position = target.position;
 	}
 
@@ -42,6 +50,7 @@ public class SpinScytheController : MonoBehaviour
 				PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
 			
 				if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
+					AudioManager.Instance.Play(hitSound);
 					Hit(other.gameObject);
 				}
 			}

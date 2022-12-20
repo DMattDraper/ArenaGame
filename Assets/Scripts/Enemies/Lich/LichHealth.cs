@@ -8,6 +8,7 @@ public class LichHealth : MonoBehaviour
 	public float maxHealth;
 	public float health;
 	public GameObject healthbar;
+	public GameObject healthbarback;
 	
 	//Private Members
 	private Rigidbody2D rbody;
@@ -20,8 +21,7 @@ public class LichHealth : MonoBehaviour
 		health = maxHealth;
 		//Get Components
 		rbody = GetComponent<Rigidbody2D>();
-		lc = GetComponent<LichController>();
-        
+		lc = GetComponent<LichController>();  
     }
 	
 	private void OnTriggerEnter2D(Collider2D other){
@@ -59,7 +59,7 @@ public class LichHealth : MonoBehaviour
 	
 	//Update visual of health bar
 	void updateHealthBar(){
-		healthbar.transform.localScale = new Vector3(1.0f * (health/maxHealth), 0.15f, 2.0f);
+		healthbar.transform.localScale = new Vector3(25.0f * (health/maxHealth), 0.8f, 2.0f);
 	}
 	
 	void TakeDamage(float damage){

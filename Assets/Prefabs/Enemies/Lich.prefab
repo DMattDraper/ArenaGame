@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2803456953197756541}
   - component: {fileID: -6593287580895124963}
   - component: {fileID: 7056818721833628396}
+  - component: {fileID: 7541115798689540572}
   m_Layer: 0
   m_Name: Lich
   m_TagString: Enemy
@@ -116,8 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 150
   health: 0
-  healthbar: {fileID: 361340813229890778, guid: 8c5727b67484c084ca94ef9b031a3943,
-    type: 3}
+  healthbar: {fileID: 8595183834340762660}
+  healthbarback: {fileID: 4559841773663177180}
 --- !u!114 &-6593287580895124963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +156,20 @@ MonoBehaviour:
   Skeleton: {fileID: 6910645806107393322, guid: 1c85d471c8b34cb4aab438c82a203a5f,
     type: 3}
   loaded: 0
+--- !u!114 &7541115798689540572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497785750962107314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca3012922676d048bac6ddc34bcc471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 8595183834340762660}
+  healthbarback: {fileID: 4559841773663177180}
 --- !u!1 &7013519027502224231
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +319,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0636ec96e5c36e9499e63a7f39b429ef, type: 3}
+--- !u!1 &4559841773663177180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3023624012960324489, guid: 0636ec96e5c36e9499e63a7f39b429ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 1635332136904495701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4559841773663177181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3023624012960324488, guid: 0636ec96e5c36e9499e63a7f39b429ef,
@@ -434,6 +455,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c5727b67484c084ca94ef9b031a3943, type: 3}
+--- !u!1 &8595183834340762660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 361340813229890778, guid: 8c5727b67484c084ca94ef9b031a3943,
+    type: 3}
+  m_PrefabInstance: {fileID: 8235825492329281790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6686892088505475568 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3352678458229102862, guid: 8c5727b67484c084ca94ef9b031a3943,

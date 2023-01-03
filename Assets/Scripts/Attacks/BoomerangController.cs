@@ -7,8 +7,11 @@ public class BoomerangController : MonoBehaviour
 	//Public Members
 	public float power;
 	public float speed;
+	public float rotationSpeed;
 	public Rigidbody2D reaperRbody;
 	public Collider2D reaperCollider;
+	public string sound;
+	public string hitSound;
 	
 	//Private Members
 	private Rigidbody2D rBody;
@@ -16,7 +19,10 @@ public class BoomerangController : MonoBehaviour
 	private bool bounced = false;
 	private bool reverse = false;
 	
-	
+	void Awake() {
+		AudioManager.Instance.Play(sound);
+	}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +42,8 @@ public class BoomerangController : MonoBehaviour
 	// IDK how often FixedUpdate is called lol
 	void FixedUpdate()
 	{
+		transform.Rotate(0.0f, 0.0f, rotationSpeed, Space.World);
+
 		if(reverse == true){
 			rBody.velocity = (reaperRbody.position - rBody.position).normalized * speed;
 		}
@@ -52,6 +60,7 @@ public class BoomerangController : MonoBehaviour
 			PlayerPowerup pp = other.gameObject.GetComponent<PlayerPowerup>();
 			
 			if(pc.state != PlayerController.State.Dashing && pc.state != PlayerController.State.Stunned && pp.powerup != PlayerPowerup.Powerup.Invincible){
+				AudioManager.Instance.Play(hitSound);
 				Hit(other.gameObject);
 			}
 			

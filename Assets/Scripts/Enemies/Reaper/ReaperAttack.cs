@@ -112,10 +112,11 @@ public class ReaperAttack : MonoBehaviour
 			Vector2 attackTransform =  playerRigidbody.position - rBody.position;
 		
 			//Get position for attack
-			Vector2 attackPosition = rBody.position + attackTransform.normalized * 1.5f;
+			Vector2 attackPosition = rBody.position + attackTransform.normalized * 1f;
 			
 			//Create the attack object
 			GameObject attackInstance = Instantiate(SlashAttack,attackPosition,new Quaternion(0,0,0,0));
+			attackInstance.GetComponent<AttackController>().parent = transform;
 	}
 	
 	void boomerangAttack(){
